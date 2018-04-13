@@ -473,7 +473,7 @@ func (vcenter *VCenter) Query(config Configuration, InfluxDBClient influxclient.
 		vmSummary[vm.Self]["datastore"] = strings.Replace(strings.Replace(re.FindString(fmt.Sprintln(vm.Summary.Config)), "[", "", -1), "]", "", -1)
 
 		// List all devices to get vDisks
-		for _, device := range vm.info.Hardware.Device {
+		for _, device := range vm.Hardware.Device {
 			// Hacky way to check if it's a vDisk and if it's datastore is different than the main one for VM
 			if device.Backing.FileName != nil && device.Backing.Datastore.Name != vmSummary[vm.Self]["datastore"] {
 				if vDiskToDatastore[vm.Self] == nil {
